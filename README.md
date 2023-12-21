@@ -1,2 +1,2 @@
-# doodle
+# Technical interviews
 Doodle technical interview
