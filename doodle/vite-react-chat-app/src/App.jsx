@@ -13,7 +13,7 @@ function App() {
         <>
           <p className="user"> Logged in as: {user}</p>
           <button onClick={() => setIsLoggedIn(false)}>Logout</button>
-          <ChatApp />
+          <ChatApp author={user} />
         </>
       ) : (
         <form className="mock-login-form">
