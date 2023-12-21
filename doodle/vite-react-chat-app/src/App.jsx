@@ -9,7 +9,7 @@ function App() {
 
   const URL = "https://chatty.doodle-test.com/api/chatty/v1.0";
   const TOKEN = "vmg7caZZVF24";
-  const TIMESTAMP = "1703156847953";
+  const TIMESTAMP = "1703166391395";
 
   const handleLogout = () => {
     setIsLoggedIn(false);
@@ -35,8 +35,8 @@ function App() {
     const formData = newMessage;
 
     const handleData = (data) => {
-      const entries = Object.entries(data);
-      setMessages((messages) => messages.concat(entries));
+      const { message, author, timestamp } = data;
+      setMessages((messages) => messages.concat(message, author, timestamp));
       console.log("messages", messages);
       setNewMessage("");
     };
@@ -56,38 +56,85 @@ function App() {
       <h1>Chat App for Doodle</h1>
       {isLoggedIn ? (
         <>
-          <p className="user"> Logged in as: {user}</p>
-          <button onClick={handleLogout}>Logout</button>
-          <div>
-            <div className="chat-messages">
-              {messages.map((message, index) => {
+          <span className="user"> Logged in as: {user}</span>
+          <button onClick={handleLogout} className="mock-login-form__button">
+            Logout
+          </button>
+
+          <div className="chat">
+            {/* Sadly was not able to complete the JS in time */}
+            {/* <div className="chat-messages"> */}
+            {/* {messages.map((message, index) => {
                 return (
                   <div key={index}>
-                    <div>{message}</div>
-                    {/* <div>{message[1]}</div>
-                    <div>{message[2]}</div> */}
+                    <div>
+                      {index}
+                      {message}
+                    </div>
                   </div>
                 );
-              })}
-            </div>
-            <form className="chat-form" onSubmit={handleSubmit}>
-              <div>
-                {/* <label htmlFor="chat" className="chat__label">
-  Username
-</label> */}
-                <input
-                  type="text"
-                  id="chat"
-                  className="chat__input"
-                  value={newMessage}
-                  onChange={handleChange}
-                />
+              })} */}
+            <div className="chat-messages">
+              <div className="chat-messages__old">
+                <p className="author">Joffrey</p>
+                <p className="message">Brilliant</p>
+                <p className="date">10 Mar 2018</p>
               </div>
+            </div>
+            <div className="chat-messages">
+              <div className="chat-messages__old">
+                <p className="author">NINJA</p>
+                <p className="message">Great resource, thanks</p>
+                <p className="date">10 Mar 2018 9:55</p>
+              </div>
+            </div>
+            <div className="chat-messages">
+              <div className="chat-messages__old">
+                <p className="author">I am mister brilliant</p>
+                <p className="message">THANKSSSS!!!!!</p>
+                <p className="date">10 Mar 2018 10:10</p>
+              </div>
+            </div>
+            <div className="chat-messages">
+              <div className="chat-messages__old">
+                <p className="author">martin57</p>
+                <p className="message">Thanks Peter</p>
+                <p className="date">10 Mar 2018 10:19</p>
+              </div>
+            </div>
+            <div className="chat-messages">
+              <div className="chat-messages__old">
+                <p className="author">Patricia</p>
+                <p className="message">Sounds good to me!</p>
+                <p className="date">10 Mar 2018 10:22</p>
+              </div>
+            </div>
+            <div className="chat-messages">
+              <div className="chat-messages__user">
+                <p className="message">
+                  Hev folks! I wanted to get in touch with you regarding the
+                  project. Please, let me know how you plan to contribute.
+                </p>
+                <p className="date">12 Mar 2018 14:38</p>
+              </div>
+            </div>
+          </div>
+          <div className="chat-form__background">
+            <form className="chat-form" onSubmit={handleSubmit}>
+              <input
+                type="text"
+                id="chat"
+                className="chat__input"
+                placeholder="Message"
+                value={newMessage}
+                onChange={handleChange}
+              />
               <button type="submit" className="chat__button">
                 Send
               </button>
             </form>
           </div>
+          {/* </div> */}
         </>
       ) : (
         <form className="mock-login-form">
