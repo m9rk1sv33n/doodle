@@ -5,7 +5,7 @@ const ChatThread = () => {
 
   const URL = "https://chatty.doodle-test.com/api/chatty/v1.0";
   const TOKEN = "vmg7caZZVF24";
-  const TIMESTAMP = "1703139713816";
+  const TIMESTAMP = "1703140967558";
 
   useEffect(() => {
     const requestOptions = {
