@@ -3,3 +3,16 @@
   margin: 0 auto;
   padding: 2rem;
 }
+
+.mock-login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.mock-login-form__input {
+  font-size: 1.2em;
+}
+.mock-login-form__button {
+  margin-top: 2em;
+  align-self: center;
+}
