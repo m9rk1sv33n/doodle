@@ -1,26 +1,32 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import useDebounce from "../hooks/useDebounce";
 
 const ChatApp = (props) => {
+  const [newMesssage, setNewMessage] = useState("");
+  const debouncedNewMessage = useDebounce(newMesssage);
+
   const URL = "https://chatty.doodle-test.com/api/chatty/v1.0";
   const TOKEN = "vmg7caZZVF24";
 
   const author = props.author;
 
   const handleChange = (e) => {
-    console.log(e.target.value);
+    setNewMessage(e.target.value);
   };
 
   useEffect(() => {
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json", token: TOKEN },
-      body: JSON.stringify({ message: "this is a message", author }),
-    };
-    fetch(URL, requestOptions)
-      .then((response) => response.json())
-      .then((data) => console.log("data", data));
-  }, [author]);
+    if (debouncedNewMessage) {
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json", token: TOKEN },
+        body: JSON.stringify({ message: debouncedNewMessage, author }),
+      };
+      fetch(URL, requestOptions)
+        .then((response) => response.json())
+        .then((data) => console.log("data", data));
+    }
+  }, [debouncedNewMessage, author]);
 
   return (
     <div>
