@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import ChatApp from "./components/ChatApp";
+import ChatThread from "./components/ChatThread";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -13,6 +14,7 @@ function App() {
         <>
           <p className="user"> Logged in as: {user}</p>
           <button onClick={() => setIsLoggedIn(false)}>Logout</button>
+          <ChatThread />
           <ChatApp author={user} />
         </>
       ) : (

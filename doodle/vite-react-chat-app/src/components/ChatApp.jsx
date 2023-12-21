@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
-import useDebounce from "../hooks/useDebounce";
 
 const ChatApp = (props) => {
   const [newMesssage, setNewMessage] = useState("");
-  const debouncedNewMessage = useDebounce(newMesssage);
 
   const URL = "https://chatty.doodle-test.com/api/chatty/v1.0";
   const TOKEN = "vmg7caZZVF24";
@@ -15,22 +13,23 @@ const ChatApp = (props) => {
     setNewMessage(e.target.value);
   };
 
-  useEffect(() => {
-    if (debouncedNewMessage) {
-      const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/json", token: TOKEN },
-        body: JSON.stringify({ message: debouncedNewMessage, author }),
-      };
-      fetch(URL, requestOptions)
-        .then((response) => response.json())
-        .then((data) => console.log("data", data));
-    }
-  }, [debouncedNewMessage, author]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = newMesssage;
+
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json", token: TOKEN },
+      body: JSON.stringify({ message: formData, author }),
+    };
+    fetch(URL, requestOptions)
+      .then((response) => response.json())
+      .then((data) => console.log("data", data));
+  };
 
   return (
     <div>
-      <form className="chat-form">
+      <form className="chat-form" onSubmit={handleSubmit}>
         <div>
           {/* <label htmlFor="chat" className="chat__label">
   Username
@@ -39,6 +38,7 @@ const ChatApp = (props) => {
             type="text"
             id="chat"
             className="chat__input"
+            value={newMesssage}
             onChange={handleChange}
           />
         </div>
