@@ -1,4 +1,4 @@
-As you can see from my commit history I did the work over a 10 hour period on Thursday, Dec 21. I also did some worked not logged in my commits on Wednesday, Dec 20. I was working on it sporadically as I had various _commit_ments during the day. Below are my answers to the questions in the challenge.
+As you can see from my commit history I did the work over a 10 hour period on Thursday, Dec 21. I also did some worked not logged in my commits on Wednesday, Dec 20. I was working on it sporadically as I had various *commit*ments during the day. Below are my answers to the questions in the challenge.
 
 It is OK if the challenge is not completed:
 
