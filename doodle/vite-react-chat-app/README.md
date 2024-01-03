@@ -26,3 +26,46 @@ what you would differently a second time around:
 
 Best,
 Marki Sveen
+
+## JANUARY 3
+
+I wanted to go back and see where I went astray, a little embarrased that I didn't display the GET request:
+
+```
+import { useEffect, useState } from "react";
+
+const URL = "https://chatty.doodle-test.com/api/chatty/v1.0";
+const TOKEN = "vmg7caZZVF24";
+const TIMESTAMP = "1703166391395";
+
+const ChatGet = () => {
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    const requestOptions = {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    };
+    fetch(`${URL}/?since=${TIMESTAMP}&limit=10&token=${TOKEN}`, requestOptions)
+      .then((response) => response.json())
+      .then((data) => setMessages(data));
+  }, []);
+
+  return (
+    <div>
+      <h1>ChatGet</h1>
+      <ul>
+        {messages.map((message, index) => (
+          <li key={index}>
+            <p>{message.author}</p>
+            <p>{message.message}</p>
+            <p>{message.timestamp}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default ChatGet;
+```
